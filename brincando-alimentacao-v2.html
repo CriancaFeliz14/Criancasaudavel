@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menos Celular, Mais Aprendizado para Seu Filho!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:       #27AE3F;
+    --green-dark:  #1e8a32;
+    --green-light: #e8f9ec;
+    --orange:      #F55C00;
+    --orange-light: #FF8C42;
+    --yellow:      #FFD600;
+    --cream:       #FFFBF4;
+    --dark:        #1A1A1A;
+    --gray:        #6B7280;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--dark);
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+  }
+  .topbar .highlight { color: var(--yellow); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #e8f9ec 0%, #fffbee 55%, #fff3e0 100%);
+    padding: 52px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* POV badge — elemento novo vindo do criativo */
+  .pov-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dark);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 22px;
+    letter-spacing: 0.2px;
+  }
+  .pov-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.85rem, 6vw, 3rem);
+    line-height: 1.15;
+    color: var(--dark);
+    max-width: 660px;
+    margin: 0 auto 16px;
+  }
+  .hero h1 .green { color: var(--green); }
+  .hero h1 .orange { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--gray);
+    max-width: 520px;
+    margin: 0 auto 10px;
+    line-height: 1.65;
+  }
+
+  /* Hook direto do anúncio */
+  .hook-pill {
+    display: inline-block;
+    background: rgba(245,92,0,0.1);
+    border: 1.5px solid rgba(245,92,0,0.25);
+    color: var(--orange);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.88rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  /* Faces */
+  .faces-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 28px auto 10px;
+  }
+  .face-card {
+    width: 128px;
+    height: 128px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.4rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    flex-shrink: 0;
+  }
+  .face-card.healthy   { background: var(--green); }
+  .face-card.unhealthy { background: var(--orange); }
+  .face-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.68rem;
+    color: #fff;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .vs-badge {
+    background: #fff;
+    border: 3px solid var(--yellow);
+    color: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* Social proof line */
+  .social-proof-line {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin: 18px auto 28px;
+    max-width: 400px;
+  }
+  .social-proof-line strong { color: var(--dark); }
+
+  /* CTA Box */
+  .cta-box {
+    background: #fff;
+    border: 3px solid var(--green);
+    border-radius: 20px;
+    padding: 26px 28px;
+    max-width: 420px;
+    margin: 0 auto;
+    box-shadow: 0 12px 40px rgba(39,174,63,0.15);
+  }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .price-old {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: var(--gray);
+    text-decoration: line-through;
+  }
+  .price-new {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 2.7rem;
+    color: var(--green-dark);
+  }
+  .price-label {
+    font-size: 0.83rem;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+  .btn-cta {
+    display: block;
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    padding: 16px 24px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(39,174,63,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    line-height: 1.3;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(39,174,63,0.45); }
+  .btn-cta .btn-sub {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+  .secure-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: var(--gray);
+    flex-wrap: wrap;
+  }
+
+  /* ── SEÇÃO: HOOK / PROBLEMA ── */
+  .section-hook {
+    background: var(--dark);
+    color: #fff;
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .section-hook .inner { max-width: 640px; margin: 0 auto; }
+  .section-hook .section-label { color: var(--yellow); margin-bottom: 12px; }
+  .section-hook h2 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .section-hook h2 span { color: var(--orange-light); }
+
+  .screen-time-stat {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 24px auto 0;
+    max-width: 480px;
+  }
+  .screen-time-stat .big-num {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .screen-time-stat p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ── BENEFÍCIOS (lista do anúncio) ── */
+  .section-dev {
+    padding: 56px 24px;
+    background: #fff;
+  }
+  .section-dev .inner { max-width: 660px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+  }
+  .dev-card {
+    background: var(--green-light);
+    border-radius: 16px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dev-card .d-icon { font-size: 1.8rem; }
+  .dev-card h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--dark);
+  }
+  .dev-card p { font-size: 0.83rem; color: var(--gray); line-height: 1.5; }
+
+  /* ── O QUE VOCÊ RECEBE ── */
+  .section-what {
+    padding: 56px 24px;
+    background: linear-gradient(180deg, #f0fbf2 0%, var(--cream) 100%);
+  }
+  .section-what .inner { max-width: 680px; margin: 0 auto; text-align: center; }
+
+  .kit-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+    text-align: left;
+  }
+  .kit-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--green);
+  }
+  .kit-card .kit-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .kit-card h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .kit-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+  /* ── DIFERENCIAIS (do anúncio) ── */
+  .section-diff {
+    padding: 56px 24px;
+    background: var(--green);
+    color: #fff;
+  }
+  .section-diff .inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .section-diff .section-title { color: #fff; margin-bottom: 32px; }
+  .section-diff .section-label { color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+
+  .diff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .diff-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .diff-item .d-em { font-size: 1.4rem; flex-shrink: 0; }
+
+  /* ── COMO FUNCIONA ── */
+  .section-how {
+    padding: 56px 24px;
+    background: #fff;
+  }
+  .section-how .inner { max-width: 640px; margin: 0 auto; text-align: center; }
+
+  .steps { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    text-align: left;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-line {
+    position: absolute;
+    left: 22px; top: 44px; bottom: 0;
+    width: 2px;
+    background: #d1fae5;
+  }
+  .step:last-child .step-line { display: none; }
+  .step-body h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    margin-top: 10px;
+  }
+  .step-body p { font-size: 0.9rem; color: var(--gray); line-height: 1.55; }
+
+  /* ── PARA QUEM ── */
+  .section-for {
+    padding: 56px 24px;
+    background: var(--cream);
+  }
+  .section-for .inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .for-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .for-chip {
+    background: #fff;
+    border: 2px solid var(--yellow);
+    border-radius: 12px;
+    padding: 16px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .for-chip span { display: block; font-size: 1.6rem; margin-bottom: 6px; }
+
+  /* ── SOCIAL PROOF / POV ── */
+  .section-pov {
+    padding: 56px 24px;
+    background: var(--dark);
+    color: #fff;
+    text-align: center;
+  }
+  .section-pov .inner { max-width: 680px; margin: 0 auto; }
+  .section-pov .section-title { color: #fff; margin-bottom: 32px; }
+  .section-pov .section-label { color: var(--yellow); margin-bottom: 10px; }
+
+  .pov-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .pov-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 22px 18px;
+    text-align: left;
+    position: relative;
+  }
+  .pov-card .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 3rem;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .pov-card .pov-text {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 14px;
+  }
+  .pov-card .pov-author {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+  }
+  .stars { color: #FBBF24; font-size: 0.85rem; margin-bottom: 8px; }
+
+  /* Stat bar */
+  .stat-bar {
+    background: rgba(255,214,0,0.1);
+    border: 1px solid rgba(255,214,0,0.25);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 32px auto 0;
+    max-width: 500px;
+    text-align: center;
+  }
+  .stat-bar strong {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-bar p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+  /* ── CTA FINAL ── */
+  .section-cta-final {
+    padding: 64px 24px;
+    background: linear-gradient(160deg, #e8f9ec 0%, #fffbee 100%);
+    text-align: center;
+  }
+  .section-cta-final .inner { max-width: 500px; margin: 0 auto; }
+  .section-cta-final h2 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .section-cta-final p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .tag-no-risk {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1.5px solid #d1fae5;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    color: var(--green-dark);
+    font-weight: 700;
+    margin-top: 16px;
+  }
+
+  /* ── FAQ ── */
+  .section-faq { padding: 56px 24px; background: #fff; }
+  .section-faq .inner { max-width: 620px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid #e5e7eb; padding: 18px 0; }
+  .faq-q {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--green); }
+  .faq-q.open::after { content: '−'; }
+  .faq-a { font-size: 0.9rem; color: var(--gray); line-height: 1.65; display: none; padding-top: 8px; }
+  .faq-a.show { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+
+  /* ── STICKY BAR ── */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--green);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
+    z-index: 999;
+    gap: 12px;
+  }
+  .sticky-price {
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+  .sticky-price small { display: block; font-size: 0.65rem; font-weight: 600; opacity: 0.8; }
+  .sticky-btn {
+    flex: 1;
+    max-width: 260px;
+    background: var(--yellow);
+    color: var(--dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    padding: 13px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity 0.15s;
+  }
+  .sticky-btn:hover { opacity: 0.9; }
+
+  @media (max-width: 500px) {
+    .faces-row { gap: 8px; }
+    .face-card { width: 110px; height: 110px; font-size: 2.8rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  ⚡ <span class="highlight">Menos celular, mais aprendizado</span> &bull; PDF direto no WhatsApp &bull; Apenas <span class="highlight">R$14,99</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="pov-badge">
+    <span class="dot"></span>
+    POV: você encontrou a atividade que tira seu filho da tela
+  </div>
+
+  <h1>
+    <span class="orange">Menos Celular,</span><br>
+    <span class="green">Mais Aprendizado</span><br>
+    para Seu Filho
+  </h1>
+
+  <div class="hook-pill">
+    📱 Seu filho passa horas no celular, tablet ou televisão?
+  </div>
+
+  <p class="hero-sub">
+    Transforme parte desse tempo em momentos de aprendizado e diversão com uma atividade educativa que realmente funciona — sem tela nenhuma.
+  </p>
+
+  <div class="faces-row">
+    <div class="face-card unhealthy">
+      😢
+      <div class="face-label">Não Saudáveis</div>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="face-card healthy">
+      😄
+      <div class="face-label">Saudáveis</div>
+    </div>
+  </div>
+
+  <p class="social-proof-line">
+    <strong>Milhares de pais</strong> já estão usando para entreter as crianças o dia inteiro sem depender de telas.
+  </p>
+
+  <div class="cta-box">
+    <div class="price-row">
+      <span class="price-old">R$29,90</span>
+      <span class="price-new">R$14,99</span>
+    </div>
+    <p class="price-label">Pagamento único · PDF imediato no WhatsApp · Sem mensalidade</p>
+    <a href="https://wa.me/SEUNUMERO?text=Quero+o+Kit+Brincando+com+a+Alimentação" class="btn-cta">
+      📲 Clique aqui e receba seu material agora!
+      <span class="btn-sub">Direto no WhatsApp · Em instantes</span>
+    </a>
+    <div class="secure-note">🔒 Pagamento seguro &nbsp;|&nbsp; 🖨️ Imprimir em casa &nbsp;|&nbsp; ✅ Acesso imediato</div>
+  </div>
+
+</section>
+
+<!-- HOOK PROBLEMA -->
+<section class="section-hook">
+  <div class="inner">
+    <div class="section-label">O problema real</div>
+    <h2>Seu filho passa horas no celular, tablet ou <span>televisão</span>?</h2>
+    <p style="color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.65; max-width: 520px; margin: 0 auto 0;">
+      Você não está sozinho. A maioria das crianças de hoje está cada vez mais viciada em telas — e cada vez mais longe de atividades que de verdade estimulam o cérebro, o corpo e a criatividade.
+    </p>
+    <div class="screen-time-stat">
+      <div class="big-num">4h+</div>
+      <p>é o tempo médio que crianças de 3 a 9 anos passam em frente às telas por dia — quando existem alternativas tão simples e eficazes quanto essa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE ESTIMULA -->
+<section class="section-dev">
+  <div class="inner">
+    <div class="section-label">O que a brincadeira estimula</div>
+    <h2 class="section-title">5 habilidades desenvolvidas<br>enquanto a criança se diverte</h2>
+    <div class="dev-grid">
+      <div class="dev-card">
+        <span class="d-icon">✂️</span>
+        <h3>Coordenação Motora</h3>
+        <p>Recortar e encaixar os alimentos desenvolve a motricidade fina de forma natural.</p>
+      </div>
+      <div class="dev-card">
+        <span class="d-icon">🎨</span>
+        <h3>Criatividade</h3>
+        <p>Montar, classificar e inventar histórias com os alimentos estimula a imaginação.</p>
+      </div>
+      <div class="dev-card">
+        <span class="d-icon">🧠</span>
+        <h3>Concentração</h3>
+        <p>A dinâmica prende a atenção da criança por muito mais tempo do que uma tela.</p>
+      </div>
+      <div class="dev-card">
+        <span class="d-icon">🔍</span>
+        <h3>Raciocínio Lógico</h3>
+        <p>Classificar "saudável" e "não saudável" treina a tomada de decisão e o pensamento crítico.</p>
+      </div>
+      <div class="dev-card">
+        <span class="d-icon">🌱</span>
+        <h3>Desenvolvimento Infantil</h3>
+        <p>Aprender sobre alimentação desde cedo forma hábitos saudáveis para a vida toda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE VOCÊ RECEBE -->
+<section class="section-what">
+  <div class="inner">
+    <div class="section-label">O que você recebe</div>
+    <h2 class="section-title">O Kit completo em PDF,<br>pronto para imprimir em casa</h2>
+    <div class="kit-items">
+      <div class="kit-card">
+        <span class="kit-icon">🟢</span>
+        <h3>Caixa Saudáveis</h3>
+        <p>Personagem verde sorridente para receber os alimentos certos.</p>
+      </div>
+      <div class="kit-card" style="border-top-color: var(--orange);">
+        <span class="kit-icon">🟠</span>
+        <h3>Caixa Não Saudáveis</h3>
+        <p>Personagem laranja triste que recebe os alimentos a evitar.</p>
+      </div>
+      <div class="kit-card" style="border-top-color: var(--yellow);">
+        <span class="kit-icon">✂️</span>
+        <h3>+30 Figuras para Recortar</h3>
+        <p>Frutas, verduras, fast food, doces e muito mais — tudo ilustrado.</p>
+      </div>
+      <div class="kit-card" style="border-top-color: #6366F1;">
+        <span class="kit-icon">📋</span>
+        <h3>Instruções de Montagem</h3>
+        <p>Passo a passo simples para montar com qualquer criança em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="section-diff">
+  <div class="inner">
+    <div class="section-label">Por que é fácil começar</div>
+    <h2 class="section-title">Investimento acessível,<br>resultado imediato</h2>
+    <div class="diff-list">
+      <div class="diff-item"><span class="d-em">📄</span> Material 100% em PDF — nada para esperar pelo correio</div>
+      <div class="diff-item"><span class="d-em">📲</span> Receba imediatamente no WhatsApp após o pagamento</div>
+      <div class="diff-item"><span class="d-em">🖨️</span> Imprima em casa quando quiser — ilimitado</div>
+      <div class="diff-item"><span class="d-em">💰</span> Investimento acessível — menos que um lanche</div>
+      <div class="diff-item"><span class="d-em">📵</span> Sem telas, sem app, sem instalação — só papel e diversão</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section-how">
+  <div class="inner">
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-title">Do pagamento à brincadeira<br>em menos de 30 minutos</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1<div class="step-line"></div></div>
+        <div class="step-body">
+          <h3>Clique e vá para o WhatsApp</h3>
+          <p>Clique no botão, efetue o pagamento rápido e seguro, e avise no chat.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2<div class="step-line"></div></div>
+        <div class="step-body">
+          <h3>Receba o PDF na hora</h3>
+          <p>O arquivo completo chega direto no WhatsApp em instantes. Não precisa baixar nenhum app.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3<div class="step-line"></div></div>
+        <div class="step-body">
+          <h3>Imprima e monte com a criança</h3>
+          <p>Qualquer impressora serve. Recorte os alimentos junto com a criança — isso já faz parte da diversão!</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4<div class="step-line"></div></div>
+        <div class="step-body">
+          <h3>Brinque, aprenda e repita</h3>
+          <p>A criança classifica os alimentos nas caixas certas. Pode jogar sozinha, em dupla ou em turma.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section-for">
+  <div class="inner">
+    <div class="section-label">Para quem é</div>
+    <h2 class="section-title">Perfeito para qualquer adulto<br>que cuida de crianças</h2>
+    <div class="for-grid">
+      <div class="for-chip"><span>👩‍👧</span>Mães e Pais</div>
+      <div class="for-chip"><span>👩‍🏫</span>Professores</div>
+      <div class="for-chip"><span>👵</span>Avós</div>
+      <div class="for-chip"><span>🏥</span>Nutricionistas</div>
+      <div class="for-chip"><span>🏫</span>Escolas</div>
+      <div class="for-chip"><span>🎨</span>Recreacionistas</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS / POV -->
+<section class="section-pov">
+  <div class="inner">
+    <div class="section-label">O que os pais dizem</div>
+    <h2 class="section-title">"Essa foi a melhor compra<br>que fiz para meu filho"</h2>
+
+    <div class="pov-cards">
+      <div class="pov-card">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="pov-text">Minha filha de 5 anos ficou mais de uma hora brincando e ainda me pediu brócolis no jantar. Não acreditei!</p>
+        <div class="pov-author">— Fernanda R. · Mãe de 2 filhos</div>
+      </div>
+      <div class="pov-card">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="pov-text">Usei na turma de educação infantil e foi um sucesso. Simples, barato e as crianças aprenderam de verdade.</p>
+        <div class="pov-author">— Prof.ª Carla M. · Educadora infantil</div>
+      </div>
+      <div class="pov-card">
+        <span class="quote-mark">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="pov-text">Meu filho parou de pedir o tablet por mais de duas horas. Valeu muito mais do que paguei!</p>
+        <div class="pov-author">— Rodrigo S. · Pai de menino de 6 anos</div>
+      </div>
+    </div>
+
+    <div class="stat-bar">
+      <strong>Milhares de pais já descobriram essa solução</strong>
+      <p>Uma forma simples de entreter as crianças sem depender de telas o dia inteiro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section-cta-final">
+  <div class="inner">
+    <h2>Dê para o seu filho o melhor presente: <span style="color:var(--green)">atenção sem tela</span> 🥦</h2>
+    <p>PDF completo, acesso imediato via WhatsApp. Imprima quantas vezes quiser. Uma compra, para sempre.</p>
+
+    <div class="cta-box" style="border-color: var(--orange);">
+      <div class="price-row">
+        <span class="price-old">R$29,90</span>
+        <span class="price-new" style="color: var(--orange);">R$14,99</span>
+      </div>
+      <p class="price-label">Pagamento único · Sem mensalidade · Acesso imediato</p>
+      <a href="https://wa.me/SEUNUMERO?text=Quero+o+Kit+Brincando+com+a+Alimentação" class="btn-cta" style="background: var(--orange); box-shadow: 0 6px 20px rgba(245,92,0,0.35);">
+        📲 Clique em WhatsApp e receba seu material agora!
+        <span class="btn-sub">Acesso imediato · Sem espera · Sem risco</span>
+      </a>
+      <div class="secure-note">🔒 Pagamento seguro &nbsp;|&nbsp; ✅ Satisfação garantida</div>
+    </div>
+
+    <div class="tag-no-risk">✅ Se não gostar, devolvemos seu dinheiro</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-faq">
+  <div class="inner">
+    <div class="section-label">Dúvidas frequentes</div>
+    <h2 class="section-title" style="margin-bottom: 8px;">Antes de comprar</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Como recebo o material após o pagamento?</div>
+      <div class="faq-a">Você clica no botão de WhatsApp, realiza o pagamento e nos avisa no chat. Enviamos o PDF direto na conversa em instantes — sem e-mail, sem login, sem nada complicado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Precisa de impressora especial ou papel especial?</div>
+      <div class="faq-a">Não! Qualquer impressora jato de tinta ou laser funciona bem. Papel A4 comum já é suficiente. Se quiser deixar mais resistente, cartolina ou papel fotográfico ficam ótimos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Para qual faixa etária é indicado?</div>
+      <div class="faq-a">A dinâmica é ideal para crianças de 3 a 9 anos, mas pode ser adaptada para turmas maiores dependendo da proposta. Professores usam com turmas de até 12 anos sem problema.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso imprimir mais de uma vez ou usar em sala de aula?</div>
+      <div class="faq-a">Sim! O arquivo é seu e pode ser impresso quantas vezes quiser para uso pessoal ou profissional. Apenas a redistribuição ou revenda do arquivo em si é proibida.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">E se eu não gostar ou tiver algum problema?</div>
+      <div class="faq-a">Sem estresse. Se o material não atender às suas expectativas por qualquer motivo, é só entrar em contato e devolvemos o valor integral. Zero risco pra você.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Brincando com a Alimentação · Produto digital · Uso pessoal e profissional autorizado</p>
+  <p style="margin-top:4px;">Material protegido pela Lei de Direitos Autorais nº 9.610/98 · É proibida a revenda ou distribuição do arquivo</p>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <div class="sticky-price">
+    R$14,99
+    <small>Acesso imediato no WhatsApp</small>
+  </div>
+  <a href="https://wa.me/SEUNUMERO?text=Quero+o+Kit+Brincando+com+a+Alimentação" class="sticky-btn">
+    📲 Quero o Kit Agora
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const a = q.nextElementSibling;
+      const isOpen = q.classList.contains('open');
+      document.querySelectorAll('.faq-q').forEach(x => { x.classList.remove('open'); x.nextElementSibling.classList.remove('show'); });
+      if (!isOpen) { q.classList.add('open'); a.classList.add('show'); }
+    });
+  });
+</script>
+
+</body>
+</html>
